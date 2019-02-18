@@ -28,7 +28,7 @@ export default {
                 '';
         },
         colour() {
-            return this.message.user ?
+            return (this.message.user && !this.message.user.avatar) ?
                 this.message.user.getColour() :
                 '';
         }
