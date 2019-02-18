@@ -19,6 +19,14 @@ module.exports = {
         include: [
           path.join(__dirname, 'src')
         ]
+      },
+      {
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
+      },
+      {
+        test: /\.less$/,
+        use: [ 'vue-style-loader', 'css-loader', 'less-loader' ]
       }
     ]
   },

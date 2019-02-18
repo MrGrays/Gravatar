@@ -1,4 +1,4 @@
-import CustomMessageListAvatar from './components/CustomMessageListAvatar'
+import CustomMessageListAvatar from './components/CustomMessageListAvatar.vue'
 
 kiwi.plugin('gravatar', function(kiwi) {
   kiwi.replaceModule('components/MessageListAvatar', CustomMessageListAvatar)
