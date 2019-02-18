@@ -20,5 +20,6 @@ Next, add the following config parameter to /your/kiwi/folder/static/config.json
         {"name": "gravatar", "url": "static/plugins/plugin-gravatar.min.js"} 
     ],
     "gravatar": {
-      "default": "mp"
+      "default": "mp",
+      "rating": "g"
     }
