@@ -1,5 +1,4 @@
 import CustomMessageListAvatar from './components/CustomMessageListAvatar'
-import * as request from 'request'
 
 kiwi.plugin('gravatar', function(kiwi) {
   kiwi.replaceModule('components/MessageListAvatar', CustomMessageListAvatar)
@@ -28,14 +27,17 @@ kiwi.plugin('gravatar', function(kiwi) {
   })
 
   function getAvatarURL(account) {
+    let url = `https://www.gravatar.com/avatar/?d=${settings.default}&r=${settings.rating}`
     if (account) {
-      request.get(`https://account.turtlechatrooms.com/api/metadata/${account}`, (e, r, b) => {
-        b = JSON.parse(b)
-        let avatar = b.avatar ? b.avatar : ''
-        return `https://www.gravatar.com/avatar/${avatar}?d=${settings.default}&r=${settings.rating}`
+      let req = new XMLHttpRequest()
+      req.addEventListener('load', () => {
+        md = JSON.parse(this.responseText)
+        let avatar = md.avatar ? md.avatar : ''
+        url = `https://www.gravatar.com/avatar/${avatar}?d=${settings.default}&r=${settings.rating}`
       })
-    } else {
-      return `https://www.gravatar.com/avatar/?d=${settings.default}&r=${settings.rating}`
+      req.open('GET', `https://account.turtlechatrooms.com/api/metadata/${account}`)
+      req.send()
     }
+    return url
   }
 })

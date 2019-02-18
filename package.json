@@ -16,9 +16,8 @@
     "babel-loader": "^8.0.4",
     "webpack": "^4.28.3",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.14"
-  },
-  "dependencies": {
-    "request": "^2.88.0"
+    "webpack-dev-server": "^3.1.14",
+    "exports-loader": "^0.7.0",
+    "vue-loader": "^15.6.2"
   }
 }
