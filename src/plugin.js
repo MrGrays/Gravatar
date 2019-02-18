@@ -9,35 +9,37 @@ kiwi.plugin('gravatar', function(kiwi) {
 
   kiwi.on('irc.wholist', function (event, net) {
     event.users.forEach((user) => {
-      kiwi.state.addUser(net, {
-        nick: user.nick,
-        avatar: getAvatarURL(user.account)
+      getAvatarURL(user.account, (url) => {
+        kiwi.state.addUser(net, {
+          nick: user.nick,
+          avatar: url
+        })
       })
     })
   })
 
   kiwi.on('irc.account', function (event, net) {
-    if (event.account) {
+    getAvatarURL(event.account, (url) => {
       kiwi.state.addUser(net, {
         nick: event.nick,
         account: event.account,
-        avatar: getAvatarURL(event.account)
+        avatar: url
       })
-    }
+    })
   })
 
-  function getAvatarURL(account) {
-    let url = `https://www.gravatar.com/avatar/?d=${settings.default}&r=${settings.rating}`
+  function getAvatarURL(account, cb) {
     if (account) {
       let req = new XMLHttpRequest()
       req.addEventListener('load', () => {
         md = JSON.parse(this.responseText)
         let avatar = md.avatar ? md.avatar : ''
-        url = `https://www.gravatar.com/avatar/${avatar}?d=${settings.default}&r=${settings.rating}`
+        cb(`https://www.gravatar.com/avatar/${avatar}?d=${settings.default}&r=${settings.rating}`)
       })
       req.open('GET', `https://account.turtlechatrooms.com/api/metadata/${account}`)
       req.send()
+    } else {
+      cb(`https://www.gravatar.com/avatar/?d=${settings.default}&r=${settings.rating}`)
     }
-    return url
   }
 })
