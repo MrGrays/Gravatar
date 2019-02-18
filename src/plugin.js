@@ -32,7 +32,7 @@ kiwi.plugin('gravatar', function(kiwi) {
     if (account) {
       let xhr = new XMLHttpRequest()
       xhr.addEventListener('load', () => {
-        md = JSON.parse(xhr.responseText)
+        let md = JSON.parse(xhr.responseText)
         let avatar = md.avatar ? md.avatar : ''
         cb(`https://www.gravatar.com/avatar/${avatar}?d=${settings.default}&r=${settings.rating}`)
       })
