@@ -1,5 +1,5 @@
-const fs = require('fs');
 const path = require('path');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   mode: 'production',
@@ -8,19 +8,28 @@ module.exports = {
     filename: 'plugin-gravatar.min.js'
   },
   module: {
-    rules: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader',
-      query: {
-        presets: ['@babel/preset-env'],
+    rules: [
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+      },
+      {
+        test: /\.js$/,
+        use: [{loader: 'exports-loader'}, {loader: 'babel-loader'}],
+        include: [
+          path.join(__dirname, 'src')
+        ]
       }
-    }]
+    ]
   },
+  plugins: [
+    new VueLoaderPlugin()
+  ],
   devtool: 'source-map',
   devServer: {
+    filename: 'plugin-gravatar.min.js',
     contentBase: path.join(__dirname, "dist"),
     compress: true,
-    host: "0.0.0.0"
+    port: 9000
   }
 };
