@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'production',
-  entry: './plugin.js',
+  entry: './src/plugin.js',
   output: {
     filename: 'plugin-gravatar.min.js'
   },
