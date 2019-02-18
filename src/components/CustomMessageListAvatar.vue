@@ -1,17 +1,18 @@
 <template>
-    <img
-        :src="avatar"
-        class="kiwi-messagelist-avatar"
-    >
-    <!--<div
+    <div
         :style="{
             'background-color': colour
         }"
         :data-nick="message.nick"
         class="kiwi-messagelist-avatar"
     >
-        {{ message.nick[0] }}
-    </div>-->
+        <img
+        :src="avatar"
+        v-if="avatar"
+        class="kiwi-messagelist-avatar"
+        >
+        {{ avatar ? '' : message.nick[0] }}
+    </div>
 </template>
 
 <script>
@@ -26,6 +27,11 @@ export default {
                 this.message.user.avatar :
                 '';
         },
+        colour() {
+            return this.message.user ?
+                this.message.user.getColour() :
+                '';
+        }
     },
 };
 
