@@ -1,6 +1,6 @@
 <template>
     <img
-        :src="message.user.avatar"
+        :src="avatar"
         class="kiwi-messagelist-avatar"
     >
     <!--<div
@@ -21,9 +21,9 @@
 export default {
     props: ['message'],
     computed: {
-        colour() {
+        avatar() {
             return this.message.user ?
-                this.message.user.getColour() :
+                this.message.user.avatar :
                 '';
         },
     },
