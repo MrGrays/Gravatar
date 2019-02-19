@@ -110,9 +110,9 @@ const TextFormatting = kiwi.require('helpers/TextFormatting');
 const state = kiwi.require('libs/state');
 const NetworkProvider = kiwi.require('libs/NetworkProvider');
 const GlobalApi = kiwi.require('libs/GlobalApi');
-const StateBrowserNetwork = kiwi.require('StateBrowserNetwork');
-const AppSettings = kiwi.require('AppSettings');
-const BufferSettings = kiwi.require('BufferSettings');
+const StateBrowserNetwork = kiwi.require('components/StateBrowserNetwork');
+const AppSettings = kiwi.require('components/AppSettings');
+const BufferSettings = kiwi.require('components/BufferSettings');
 
 let netProv = new NetworkProvider();
 
