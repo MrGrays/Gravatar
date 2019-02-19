@@ -1,7 +1,9 @@
 import CustomMessageListAvatar from './components/CustomMessageListAvatar.vue'
+import CustomStateBrowser from './components/CustomStateBrowser.vue'
 
 kiwi.plugin('gravatar', function(kiwi) {
   kiwi.replaceModule('components/MessageListAvatar', CustomMessageListAvatar)
+  kiwi.replaceModule('components/StateBrowser', CustomStateBrowser)
 
   const settings = kiwi.state.setting('gravatar')
   if (!settings.default) settings.default = 'mp'
