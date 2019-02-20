@@ -33,8 +33,8 @@
                     <i class="fa fa-times" aria-hidden="true"/>
                 </div>
             </div>
-            <div v-else class="kiwi-statebrowser-usermenu-network">
-                {{ networkName }}
+            <div v-else class="kiwi-statebrowser-usermenu-account">
+                {{ userAccount }}
             </div>
         </div>
 
@@ -131,10 +131,15 @@ export default {
         };
     },
     computed: {
+        userAccount() {
+            let network = state.getActiveNetwork();
+            let user = network.users[network.nick.toLowerCase()];
+            return user.account ? user.account : network.nick;
+        },
         userAvatar() {
             let network = state.getActiveNetwork();
             let user = network.users[network.nick.toLowerCase()];
-            return user ? user.avatar : ''
+            return user ? user.avatar : '';
         },
         userInitial() {
             let network = state.getActiveNetwork();
@@ -143,14 +148,6 @@ export default {
                 initial = network.nick.charAt(0).toUpperCase();
             }
             return initial;
-        },
-        networkName() {
-            let network = state.getActiveNetwork();
-            let name = TextFormatting.t('no_network');
-            if (network) {
-                name = network.name;
-            }
-            return name;
         },
         isPersistingState: function isPersistingState() {
             return !!state.persistence;
