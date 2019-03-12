@@ -140,13 +140,19 @@ export default {
     computed: {
         userAccount() {
             let network = state.getActiveNetwork();
-            let user = network.users[network.nick.toLowerCase()];
-            return user.account ? user.account : network.nick;
+            let user = network ? network.currentUser() : null;
+            let name = 'Unknown'
+            if (user && user.account) {
+                name = user.account;
+            } else if (network && network.nick) {
+                name = network.nick;
+            }
+            return name;
         },
         userAvatar() {
             let network = state.getActiveNetwork();
-            let user = network.users[network.nick.toLowerCase()];
-            return user ? user.avatar : '';
+            let user = network ? network.currentUser() : null
+            return user ? user.avatar : null
         },
         userInitial() {
             let network = state.getActiveNetwork();
