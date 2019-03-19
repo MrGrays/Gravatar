@@ -309,6 +309,7 @@ export default {
     font-size: 1.5em;
     text-align: center;
     line-height: 50px;
+    border: 0px solid;
     border-radius: 50%;
     margin: 0 auto 10px auto;
     transition: all 0.3s;
