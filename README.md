@@ -8,7 +8,7 @@ This plugin requires yarn.
 
 ### Installation
 
-    $ git clone https://code.libertas.tech/TurtleChatRooms/kiwiirc-plugin-gravatar.git
+    $ git clone https://github.com/MrGrays/Gravatar.git
     $ cd kiwiirc-plugin-gravatar
     $ yarn && yarn build
 
